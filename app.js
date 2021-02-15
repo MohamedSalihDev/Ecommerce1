@@ -10,7 +10,7 @@ const app = express();
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
     .then(() => console.log("DB Connected"))
 
-//routes
+//routes middleware
 app.use('/api', userRoutes)
 const port = process.env.PORT || 8000
 app.listen(port, () => {
