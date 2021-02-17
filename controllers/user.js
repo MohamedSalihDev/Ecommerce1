@@ -26,11 +26,16 @@ exports.signin = (req, res) => {
     User.findOne({ email }), (err, user) => {
         if (err || !user) {
             return res.status(400).json({
-                err: "User with that email does not exist. Please sign up"
+                error: "User with that email does not exist. Please sign up"
+            })
+        }
+        if (!user.authenticate(password)) {
+            return res.status(401).json({
+                error: 'Email and password don\'t match'
             })
         }
         //if user is found, make sure email and password match
-        // create athenticat method in user model
+        // create athenticate method in user model
         // generate a signed token with user id and secret
         const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET)
         // persist the token as 't' in cookie with expiry date
