@@ -23,7 +23,7 @@ exports.signup = (req, res) => {
 exports.signin = (req, res) => {
     // find the user based on email
     const { email, password } = req.body
-    User.findOne({ email }), (err, user) => {
+    User.findOne({ email }, (err, user) => {
         if (err || !user) {
             return res.status(400).json({
                 error: "User with that email does not exist. Please sign up"
@@ -43,5 +43,5 @@ exports.signin = (req, res) => {
         // return response with user and token to frontend client
         const { _id, name, email, role } = user
         return res.json({ token, user: { _id, email, name, role } })
-    }
+    })
 }
