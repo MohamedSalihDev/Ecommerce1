@@ -5,11 +5,11 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const expressValidator = require('express-validator')
 const dotenv = require("dotenv");
+dotenv.config()
 // import routes
 const authRoutes = require('./routes/auth.js')
 const userRoutes = require('./routes/user.js')
 
-dotenv.config()
 //app
 const app = express();
 //db
